@@ -115,7 +115,7 @@ function Navbar() {
           placeholder="Search a book"
           type="text"
           value={searchBook}
-          className="flex-shrink-0 p-0.5 ml-2 px-3 ml-4 border-0 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 sm:p-2 sm:px-12"
+          className="flex-shrink-0 p-0.5  px-3 ml-4 border-0 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 sm:p-2 sm:px-12"
           onChange={(e) => setSearchBook(e.target.value)}
           ref={inputRef}
           whileHover={{ scale: 1.1 }}
