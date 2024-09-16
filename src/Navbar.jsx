@@ -3,6 +3,7 @@ import axios from "axios";
 import logo from "./assets/logo.png";
 import { BookContext } from "./BookProvider";
 import { motion } from "framer-motion";
+import { toast } from "react-hot-toast";
 
 function Navbar() {
   const [searchBook, setSearchBook] = useState("");
@@ -85,6 +86,8 @@ function Navbar() {
     setSelectedBook((prevSelectedBooks) => [...prevSelectedBooks, book]);
     setSearchBook(book.title); // Populate the search bar with the book title
     setBooks([]); // Close the list after selection
+    setSearchBook("");
+    toast.success("Book added Successfully!");
   };
 
   const getBookCoverUrl = (book) => {

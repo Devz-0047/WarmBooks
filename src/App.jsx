@@ -4,6 +4,7 @@ import Book from "./Book";
 import { useContext, useState } from "react";
 import { BookContext } from "./BookProvider";
 import { motion } from "framer-motion";
+import { Toaster } from "react-hot-toast";
 const MotionBook = motion(Book);
 function App() {
   const { selectedBook } = useContext(BookContext);
@@ -37,6 +38,9 @@ function App() {
 
   return (
     <div>
+      <div>
+        <Toaster position="top-left" reverseOrder={true} />
+      </div>
       <Navbar />
       <motion.div
         className="grid grid-cols-1 gap-6 p-4 mt-24 sm:grid-cols-2 lg:grid-cols-3 lg:ml-4"
