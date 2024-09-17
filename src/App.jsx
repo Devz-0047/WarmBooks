@@ -5,7 +5,9 @@ import { useContext, useState } from "react";
 import { BookContext } from "./BookProvider";
 import { motion } from "framer-motion";
 import { Toaster } from "react-hot-toast";
+
 const MotionBook = motion(Book);
+
 function App() {
   const { selectedBook } = useContext(BookContext);
 
@@ -13,15 +15,15 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const booksPerPage = 9; // You can adjust the number of books per page
 
+  // Ensure selectedBook is an array, even if undefined
+  const bookList = Array.isArray(selectedBook) ? selectedBook : [];
+
   // Calculate total pages
-  const totalPages = Math.ceil(selectedBook.length / booksPerPage);
+  const totalPages = Math.ceil(bookList.length / booksPerPage);
 
   // Get the books to display for the current page
   const startIndex = (currentPage - 1) * booksPerPage;
-  const paginatedBooks = selectedBook.slice(
-    startIndex,
-    startIndex + booksPerPage
-  );
+  const paginatedBooks = bookList.slice(startIndex, startIndex + booksPerPage);
 
   // Function to handle page change
   const handlePageChange = (pageNumber) => {
@@ -42,28 +44,40 @@ function App() {
         <Toaster position="top-left" reverseOrder={true} />
       </div>
       <Navbar />
-      <motion.div
-        className="grid grid-cols-1 gap-6 p-4 mt-24 sm:grid-cols-2 lg:grid-cols-3 lg:ml-4"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        {paginatedBooks.map((book, key) => (
-          <MotionBook
-            key={key}
-            title={book.title}
-            author={
-              book.author_name ? book.author_name.join(", ") : "Unknown Author"
-            }
-            publishedYear={book.first_publish_year}
-            coverUrl={getBookCoverUrl(book)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          />
-        ))}
-      </motion.div>
+      {bookList.length > 0 ? (
+        <motion.div
+          className="grid grid-cols-1 gap-6 p-4 mt-24 sm:grid-cols-2 lg:grid-cols-3 lg:ml-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          {paginatedBooks.map((book, key) => (
+            <MotionBook
+              key={key}
+              title={book.title}
+              author={
+                book.author_name
+                  ? book.author_name.join(", ")
+                  : "Unknown Author"
+              }
+              publishedYear={book.first_publish_year}
+              coverUrl={getBookCoverUrl(book)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            />
+          ))}
+        </motion.div>
+      ) : (
+        <div className="flex items-center justify-center h-screen">
+          <div
+            className="flex items-center justify-center h-48 text-2xl text-white rounded-lg shadow-md w-96"
+            style={{ backgroundColor: "#2257bf" }}
+          >
+            No Books Added
+          </div>
+        </div>
+      )}
       {/* Pagination Controls */}
-
       <div className="flex justify-center mt-4 space-x-2">
         {Array.from({ length: totalPages }, (_, index) => (
           <motion.button

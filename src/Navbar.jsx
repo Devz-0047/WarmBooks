@@ -168,7 +168,7 @@ function Navbar() {
           </motion.button>
         )}
 
-        {error && <p className="absolute mt-2 text-red-500">{error}</p>}
+        {error && toast.error(`${error}`)}
 
         {!loading && books.length > 0 && (
           <ul className="absolute z-10 w-full mt-2 overflow-y-auto bg-white border rounded-lg shadow-lg top-14 max-h-60">
