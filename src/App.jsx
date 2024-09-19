@@ -70,8 +70,8 @@ function App() {
       ) : (
         <div className="flex items-center justify-center h-screen">
           <div
-            className="flex items-center justify-center h-48 text-2xl text-white rounded-lg shadow-md w-96"
-            style={{ backgroundColor: "#2257bf" }}
+            className="flex items-center justify-center h-48 text-2xl text-black rounded-lg shadow-md w-96"
+            style={{ backgroundColor: "#CDC1FF" }}
           >
             No Books Added
           </div>

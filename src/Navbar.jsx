@@ -118,12 +118,34 @@ function Navbar() {
           placeholder="Search a book"
           type="text"
           value={searchBook}
-          className="flex-shrink-0 p-0.5  px-3 ml-4 border-0 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 sm:p-2 sm:px-12"
+          className="flex-shrink-0 p-0.5  px-3 ml-4 mr-4 border-0 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 sm:p-2 sm:px-12"
           onChange={(e) => setSearchBook(e.target.value)}
           ref={inputRef}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         />
+        <span>
+          <motion.button
+            whileHover={{ scale: 1.6 }}
+            whileTap={{ scale: 1.2 }}
+            onClick={() => setSearchBook("")}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </motion.button>
+        </span>
 
         {/* Conditionally render either the loading spinner or the search icon */}
         {loading ? (
