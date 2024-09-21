@@ -3,13 +3,13 @@ import Navbar from "./Navbar";
 import Book from "./Book";
 import { useContext, useState } from "react";
 import { BookContext } from "./BookProvider";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Toaster } from "react-hot-toast";
 
 const MotionBook = motion(Book);
 
 function App() {
-  const { selectedBook } = useContext(BookContext);
+  const { selectedBook, handleDelete } = useContext(BookContext);
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
@@ -51,21 +51,28 @@ function App() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          {paginatedBooks.map((book, key) => (
-            <MotionBook
-              key={key}
-              title={book.title}
-              author={
-                book.author_name
-                  ? book.author_name.join(", ")
-                  : "Unknown Author"
-              }
-              publishedYear={book.first_publish_year}
-              coverUrl={getBookCoverUrl(book)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            />
-          ))}
+          {" "}
+          <AnimatePresence>
+            {paginatedBooks.map((book) => (
+              <MotionBook
+                key={book.key}
+                bookKey={book.key}
+                title={book.title}
+                author={
+                  book.author_name
+                    ? book.author_name.join(", ")
+                    : "Unknown Author"
+                }
+                publishedYear={book.first_publish_year}
+                handleDelete={handleDelete}
+                description={book.description}
+                coverUrl={getBookCoverUrl(book)}
+
+                // whileHover={{ scale: 1.1 }}
+                // whileTap={{ scale: 0.9 }}
+              />
+            ))}{" "}
+          </AnimatePresence>
         </motion.div>
       ) : (
         <div className="flex items-center justify-center h-screen">

@@ -31,7 +31,7 @@ function Navbar() {
         const response = await axios.get(
           `https://openlibrary.org/search.json?q=${encodeURIComponent(
             searchBook
-          )}&fields=title,author_name,cover_i,first_publish_year`,
+          )}&fields=title,author_name,cover_i,first_publish_year,key`,
           {
             cancelToken: new axios.CancelToken((c) => (cancel = c)),
           }
@@ -82,12 +82,44 @@ function Navbar() {
     setBooks([]); // Close the list when form is submitted
   };
 
-  const handleBookClick = (book) => {
-    setSelectedBook((prevSelectedBooks) => [...prevSelectedBooks, book]);
-    setSearchBook(book.title); // Populate the search bar with the book title
-    setBooks([]); // Close the list after selection
-    setSearchBook("");
-    toast.success("Book added Successfully!");
+  const handleBookClick = async (book) => {
+    try {
+      // Fetch the full book details using the work key
+      const bookDetailsResponse = await axios.get(
+        `https://openlibrary.org${book.key}.json`
+      );
+
+      // Log the API response to inspect the description format
+      console.log("Book Details Response:", bookDetailsResponse.data);
+
+      // Check if the description exists and handle its format (string or object)
+      const description = bookDetailsResponse.data.description
+        ? typeof bookDetailsResponse.data.description === "string"
+          ? bookDetailsResponse.data.description
+          : bookDetailsResponse.data.description.value // when description is an object
+        : "No description available";
+
+      // Update the book object with the description
+      const bookWithDescription = {
+        ...book,
+        description,
+      };
+
+      // Add the book with description to the selected books context
+      setSelectedBook((prevSelectedBooks) => [
+        ...prevSelectedBooks,
+        bookWithDescription,
+      ]);
+
+      // Provide feedback and update UI
+      setSearchBook(book.title); // Populate the search bar with the book title
+      setBooks([]); // Close the list after selection
+      setSearchBook("");
+      toast.success("Book added successfully!");
+    } catch (error) {
+      toast.error("Failed to fetch book details.");
+      console.error(error);
+    }
   };
 
   const getBookCoverUrl = (book) => {

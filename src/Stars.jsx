@@ -7,25 +7,29 @@ export default function Stars({ totalStars = 5 }) {
   const [hoveredStars, setHoveredStars] = useState(0);
 
   return (
-    <div className="flex items-center justify-start">
-      {createArray(totalStars).map((n, i) => (
-        <motion.div
-          key={i}
-          whileHover={{ scale: 1.6 }}
-          whileTap={{ scale: 1.4 }}
-        >
-          <Star
+    <div className="flex flex-col items-center justify-start mt-3">
+      <div className="flex items-center justify-start gap-1">
+        {createArray(totalStars).map((n, i) => (
+          <motion.div
             key={i}
-            selected={hoveredStars ? hoveredStars > i : selectedStars > i}
-            onSelect={() => setSelectedStars(i + 1)}
-            onHover={() => setHoveredStars(i + 1)}
-            onHoverOut={() => setHoveredStars(0)}
-          />
-        </motion.div>
-      ))}
-      <p className="px-2 font-semibold">
-        {selectedStars} of {totalStars} stars
-      </p>
+            whileHover={{ scale: 1.6 }}
+            whileTap={{ scale: 1.4 }}
+          >
+            <Star
+              key={i}
+              selected={hoveredStars ? hoveredStars > i : selectedStars > i}
+              onSelect={() => setSelectedStars(i + 1)}
+              onHover={() => setHoveredStars(i + 1)}
+              onHoverOut={() => setHoveredStars(0)}
+            />
+          </motion.div>
+        ))}
+      </div>
+      <div>
+        <p className="font-semibold">
+          {selectedStars} of {totalStars} stars
+        </p>
+      </div>
     </div>
   );
 }
