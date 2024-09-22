@@ -120,7 +120,11 @@ const Book = forwardRef(
             </div>
           ) : (
             <div className="flex flex-col items-center justify-between gap-6">
-              <div className="flex justify-center">{description.slice(10)}</div>
+              <div className="flex justify-center">
+                {description.length > description.slice(0, 300).length
+                  ? description.slice(0, 300) + " . . ."
+                  : description}
+              </div>
               <div className="mb-auto">
                 <motion.button
                   whileHover={{ scale: 1.1, color: "#2257bf" }}
