@@ -50,8 +50,6 @@ This project is a React-based web application that allows users to search for bo
 5. **Open the App**
    App should be running at http://localhost:3000
 
-# Book Search Application
-
 ## Usage
 
 ### Book Search
@@ -79,7 +77,7 @@ The list of selected books is stored in local storage, so they persist even if y
 - **BookProvider.js**: Provides the context for managing selected books and storing them in local storage.
 - **Stars.js**: Renders a star rating system for books (can be expanded with actual functionality).
 
-# Screenshots
+## Screenshots
 
 ![Home Page](./screenshots/Home.png)
 ![Search Page](./screenshots/SearchBar.png)
