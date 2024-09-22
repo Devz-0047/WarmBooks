@@ -1,50 +1,34 @@
-# WarmBooks
+# WarmBooks: Book Search and Management App
 
-https://warm-books.vercel.app/
-WarmBooks is a React-based book search and listing app that allows users to search for books using the OpenLibrary API, display book details, and paginate through results. The app features a smooth animation experience, thanks to the integration of Framer Motion, and leverages Tailwind CSS for styling.
+This project is a React-based web application that allows users to search for books using the Open Library API, display a list of selected books, and manage the list with features such as pagination, book removal, and animations using Framer Motion. Book details, including the cover, title, author, and description, are fetched and stored locally in the browser.
+![Home Page](./screenshots/Home.png)
 
 ## Features
 
-- **Search Functionality**: Users can search for books by title and view a list of results with basic details like author, cover, and published year.
-- **Pagination**: Results are paginated, allowing users to browse books by page.
-- **Smooth Animations**: Books and buttons animate using Framer Motion, providing an engaging user experience.
-- **Star Ratings**: Users can rate books with a star rating system.
-- **Responsive Design**: The app is designed to be responsive, ensuring a great experience across devices.
+- **Book Search**: Search for books using the Open Library API.
+- **Book Display**: Display book details, including title, author, cover image, and description.
+- **Local Storage**: Save selected books in local storage so they persist across sessions.
+- **Pagination**: Navigate through books using a simple pagination system.
+- **Animations**: Use Framer Motion to animate book elements and buttons.
+- **Responsive Design**: The layout is responsive, adjusting to different screen sizes.
+  ![Search Page](./screenshots/SearchBar.png)
+  ![Book Details](./screenshots/Full.png)
+  ![Ratting](./screenshots/Rattings.png)
 
-## Technologies Used
+## Tech Stack
 
-- **React**: JavaScript library for building user interfaces.
-- **Framer Motion**: Animation library for smooth transitions and interactive elements.
+- **React**: Front-end library used to build the user interface.
 - **Tailwind CSS**: Utility-first CSS framework for styling.
-- **Axios**: Promise-based HTTP client for fetching data from the OpenLibrary API.
-- **Vite**: Next-generation frontend tooling for fast development and building.
+- **Framer Motion**: React animation library to animate components.
+- **Open Library API**: Used for fetching book data, including title, author, and cover images.
+- **Local Storage**: Persist selected books across page reloads.
+- **Axios**: Library for making HTTP requests to the Open Library API.
+- **React Hot Toast**: Provides toast notifications for feedback.
 
-## Installation
+## Setup and Installation
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/warmbooks.git
-   ```
-
-2. Navigate to the project directory:
+1. **Clone the repository**:
 
    ```bash
-   cd warmbooks
+   git clone https://github.com/Devz-0047/WarmBooks
    ```
-
-3. Install the dependencies:
-
-   ```bash
-   npm install
-   ```
-
-## Usage
-
-### Running the development server
-
-To start the development server, run:
-
-```bash
-npm run dev
-```
