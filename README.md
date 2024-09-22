@@ -79,7 +79,7 @@ The list of selected books is stored in local storage, so they persist even if y
 
 ## Screenshots
 
-![Home Page](./Screenshots/Home.png)
-![Search Page](./Screenshots/SearchBar.png)
-![Book Details](./Screenshots/Full.png)
-![Ratting](./Screenshots/Rattings.png)
+![Home Page](./Screenshots/Home.PNG)
+![Search Page](./Screenshots/SearchBar.PNG)
+![Book Details](./Screenshots/Full.PNG)
+![Ratting](./Screenshots/Rattings.PNG)
